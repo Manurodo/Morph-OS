@@ -74,8 +74,8 @@ For now the program is literally just a python script and i think i will be chan
 
 ### Requirements
 - Python interpreter (to run the script)
-- FFMPEG (audio converter)
-- POPPLER (dock converter)
+- [FFMPEG](https://www.ffmpeg.org/download.html) (audio converter)
+- [POPPLER](https://poppler.freedesktop.org/) (dock converter)
 
 ### Instalation 
 1. Add FFMPEG's and POPPLER's bin folders to the environment variable PATH (video on how to below)
