@@ -14,7 +14,7 @@
 </p>
 
 
-# Contents<a name="contents"></a>
+# 📚 Contents<a name="contents"></a>
 
 [intro]: <#introduction> "Introduction"
 [features]: <#features> "Features"
@@ -32,7 +32,7 @@
   The project is just starting, so it only has a few types of conversions, but I plan to add more over time. I'm a physics student, so I don't have much time during the week and will be working on this on weekends.
 </p>
 
-# Features<a name="features"></a>
+# 🌟 Features<a name="features"></a>
 
 - Already implemented :
   - Mass modification of file's names 
@@ -69,7 +69,7 @@
     - JSON ↔ XML , YAML , CSV
 
 
-# Getting started <a name="getting_started"></a>
+# 🚀 Getting started <a name="getting_started"></a>
 For now the program is literally just a python script and i think i will be changing that, so these may change a lot in a few months (today is 10/11/2025)
 
 ### Requirements
