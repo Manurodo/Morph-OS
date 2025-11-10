@@ -53,9 +53,7 @@
   - Image
     - PNG ↔ JPEG / JPG , GIF , BMP , TIFF / TIF , WebP , SVG , HEIF / HEIC
 
-    (Have already confirmed all of them are possible)
-
-- Want to implement :
+- Want to implement (if possible) :
   - Document
     - DOCX ↔ PDF , ODT , TXT
     - TXT ↔ MD , RTF , ODT
@@ -69,8 +67,7 @@
     - BibTeX → RIS , XML
   - Structured data
     - JSON ↔ XML , YAML , CSV
-    
-    (Not sure if all of them are possible)
+
 
 # Getting started <a name="getting_started"></a>
 For now the program is literally just a python script and i think i will be changing that, so these may change a lot in a few months (today is 10/11/2025)
