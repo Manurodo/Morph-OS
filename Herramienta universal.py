@@ -1,0 +1,221 @@
+import os
+import re
+from pdf2image import convert_from_path
+from PIL import Image
+from pydub import AudioSegment
+
+# install poppler (for pdf - png) and ffmpeg (for ogg - mp3) and add to PATH
+
+def Modificar_nombre(directorio,cadena):
+    # Recorre todos los archivos en el directorio
+    for filename in os.listdir(directorio):
+        # Separar el nombre del archivo y la extensión
+        nombre, extension = os.path.splitext(filename)
+        # Usar regex para eliminar las letras del nombre del archivo
+        nuevo_nombre = re.sub(r'[a-zA-Z]', '', nombre).lstrip()
+        # Crear el nuevo nombre agregando la cadena al principio
+        nuevo_nombre_completo = f"{cadena}{nuevo_nombre}{extension}"
+        # Obtener la ruta completa del archivo original y renombrarlo
+        ruta_original = os.path.join(directorio, filename)
+        nueva_ruta = os.path.join(directorio, nuevo_nombre_completo)
+        os.rename(ruta_original, nueva_ruta)
+        print(f"Archivo renombrado: {filename} -> {nuevo_nombre_completo}")
+
+
+
+def pdf_a_png(pdf_path, output_folder='./', dpi=300):
+    pages = convert_from_path(pdf_path, dpi=dpi)
+    for i, page in enumerate(pages):
+        filename = os.path.join(output_folder, f"pagina_{i+1}.png")
+        page.save(filename, 'PNG')
+        print(f"Página {i+1} guardada como {filename}")
+
+
+def png_a_pdf(carpeta_png, output_pdf):
+    # Lista de imágenes en la carpeta, ordenadas alfabéticamente
+    png_files = [f for f in os.listdir(carpeta_png) if f.lower().endswith('.png')]
+    png_files.sort()
+    
+    images = [Image.open(os.path.join(carpeta_png, f)).convert('RGB') for f in png_files]
+    
+    if images:
+        images[0].save(output_pdf, save_all=True, append_images=images[1:])
+        print(f"PDF generado: {output_pdf}")
+    else:
+        print("No se encontraron imágenes PNG en la carpeta.")
+
+def carpeta_ogg_a_mp3(carpeta_entrada, carpeta_salida=None, bitrate="192k"):
+    """
+    Convierte todos los archivos .ogg de una carpeta a .mp3.
+
+    Parámetros:
+        carpeta_entrada (str): Carpeta donde están los archivos .ogg.
+        carpeta_salida (str, opcional): Carpeta donde guardar los .mp3. Si no se indica, se usa la misma.
+        bitrate (str, opcional): Calidad del MP3 (por defecto 192 kbps).
+    """
+    if not os.path.isdir(carpeta_entrada):
+        raise NotADirectoryError(f"No existe la carpeta: {carpeta_entrada}")
+
+    # Si no se da carpeta de salida, usar la misma
+    if carpeta_salida is None:
+        carpeta_salida = carpeta_entrada
+
+    # Crear carpeta de salida si no existe
+    os.makedirs(carpeta_salida, exist_ok=True)
+
+    # Contador de conversiones
+    convertidos = 0
+
+    for archivo in os.listdir(carpeta_entrada):
+        if archivo.lower().endswith(".ogg"):
+            ruta_entrada = os.path.join(carpeta_entrada, archivo)
+            nombre_salida = os.path.splitext(archivo)[0] + ".mp3"
+            ruta_salida = os.path.join(carpeta_salida, nombre_salida)
+
+            try:
+                audio = AudioSegment.from_file(ruta_entrada, format="ogg")
+                audio.export(ruta_salida, format="mp3", bitrate=bitrate)
+                print(f"✅ Convertido: {archivo} → {nombre_salida}")
+                convertidos += 1
+            except Exception as e:
+                print(f"❌ Error al convertir {archivo}: {e}")
+
+    print(f"\n🎵 Conversión completa: {convertidos} archivos convertidos en '{carpeta_salida}'")
+
+
+print("\nSeleccione tipo de herramienta:")
+while True:
+    print("\n1.✏️  Modificar nombre archivos","","2.📄 Documentos","","3.🎵 Archivos musicales","","H.🛠️  Descripción distintas herramientas","","S.❌  Salir",sep="\n")
+    opcion = input("\n|: ")
+    if opcion == "1":
+        print("\nSeleccione modalidad:")
+        while True:
+            print("\n1.✏️  Modificar nombre archivos","","M.⬅️  Menú principal",sep="\n")
+            opcion_modificar = input("\n|: ")
+            if opcion_modificar == "1":
+                while True:
+                    print("\nIntroduzca directorio")
+                    directorio = input("|: ")
+                    if os.path.isdir(directorio):
+                        break  # Ruta válida, salimos del bucle
+                    else:
+                        print("Directorio no válido. Intente nuevamente.")
+        
+                while True:
+                    print("\nIntroduzca cadena")
+                    cadena = input("|: ")
+                    if all(c.isalnum() or c.isspace() for c in cadena):
+                        break
+                    else:
+                        print("❌ No se permiten caracteres especiales. Intente nuevamente.")
+                Modificar_nombre(directorio,cadena)
+                break
+            elif opcion_modificar == "m" or opcion_modificar == "M":
+                print("\nSeleccione tipo de herramienta:")
+                break
+
+    elif opcion == "2":
+        print("\nSeleccione modalidad:")
+        while True:
+            print("\n1.📄 PDF a PNG","","2.🖼️  PNG a PDF","","M.⬅️  Menú principal",sep="\n")
+            opcion_PDF_PNG = input("\n|: ")
+            
+            if opcion_PDF_PNG == "1":
+                while True:
+                    print("Introduzca la ruta del archivo PDF:")
+                    archivo_pdf = input("|: ")
+                    if os.path.exists(archivo_pdf):
+                        break  # Ruta válida, salimos del bucle
+                    else:
+                        print("❌ Archivo no encontrado. Intente nuevamente.")
+                
+                while True:
+                    print("Introduzca la ruta de la carpeta donde se guardarán las imágenes (deje vacío para usar ruta de archivo original):")
+                    carpeta_salida = input("|: ")
+
+                    if os.path.isdir(carpeta_salida):
+                        break  # Ruta válida o vacía, continuamos
+                    else:
+                        print("❌ Directorio no válido. Intente nuevamente.")
+
+                carpeta_salida = carpeta_salida if carpeta_salida.strip() else "imagenes_pdf"
+                pdf_a_png(archivo_pdf, carpeta_salida)
+
+            elif opcion_PDF_PNG == "2":
+                while True:
+                    print("\nIntroduzca la ruta de la carpeta que contiene las imágenes PNG:")
+                    carpeta_png = input("|: ")
+
+                    if os.path.isdir(carpeta_png):
+                        break  # Ruta válida, salimos del bucle
+                    else:
+                        print("❌ Directorio no válido. Intente nuevamente.")
+
+                while True:
+                    print("Introduzca la ruta con el nombre del archivo PDF de salida (incluya .pdf):")
+                    archivo_salida = input("|: ")
+                    carpeta = os.path.dirname(archivo_salida) or "."  # "." si no hay carpeta explícita
+                    nombre = os.path.basename(archivo_salida)
+
+                    if not os.path.isdir(carpeta):
+                        print("❌ Carpeta no válida. Intente nuevamente.")
+                    elif not nombre.lower().endswith(".pdf"):
+                        print("❌ Archivo no válido. Intente nuevamente.")
+                    else:
+                        break  # Ruta válida, salimos del bucle
+
+                png_a_pdf(carpeta_png, archivo_salida)
+
+            elif opcion_PDF_PNG == "m" or opcion_PDF_PNG == "M":
+                print("\nSeleccione tipo de herramienta:")
+                break
+
+            else:
+                print("\n❌ Opción no válida, por favor, seleccione una de las modalidades.")
+               
+    elif opcion == "3":
+        while True:
+            print("\nSeleccione modalidad:","","1.🎵 Carpeta OGG a MP3","","M.⬅️  Menú principal",sep="\n")
+            opcion_ogg_mp3 = input("\n|: ")
+            if opcion_ogg_mp3 == "1":
+                while True:
+                    print(" ")
+                    print("Introduzca la ruta de la carpeta que contiene los archivos .ogg:")
+                    carpeta_entrada = input("|: ")
+                    if os.path.isdir(carpeta_entrada):
+                        break  # Ruta válida, salimos del bucle
+                    else:
+                        print("❌ Directorio no válido. Intente nuevamente.")
+                while True:
+                    print("Introduzca la ruta de la carpeta donde se guardarán los archivos .mp3 (deje vacío para usar la misma carpeta):")
+                    carpeta_salida = input("|: ")
+                    if os.path.isdir(carpeta_salida) or carpeta_salida.strip() == "":
+                        break  # Ruta válida o vacía, salimos del bucle
+                    else:
+                        print("❌ Directorio no válido. Intente nuevamente.")
+                        carpeta_salida = carpeta_salida if carpeta_salida.strip() else None
+                        carpeta_ogg_a_mp3(carpeta_entrada, carpeta_salida)
+                break
+            elif opcion_ogg_mp3 == "m" or opcion_ogg_mp3 == "M":
+                print("Seleccione tipo de herramienta:")
+                break
+            else:
+                print("\n❌ Opción no válida, por favor, seleccione una de las modalidades.")
+        
+            
+    elif opcion == "h" or opcion == "H":
+        print(" ")
+        print("Descripción de las herramientas:")
+        print(" ")
+        print("1.✏️  Modificar nombre archivos: Permite cambiar el nombre de los archivos en un directorio manteniendo los numeros de este.")
+        print("2.📄 PDF a PNG: Convierte un archivo PDF en imágenes PNG.")
+        print("3.🎵 OGG a MP3: Convierte archivos de audio OGG a MP3.")
+        input("\n⬅️  Presione Enter para volver al menú principal...")
+        print("\nSeleccione tipo de herramienta:")
+
+    elif opcion == "s" or opcion == "S":
+        print("\nSaliendo del programa. ¡Hasta luego!\n")
+        break
+
+    else:
+        print("\n❌Opción no válida. Por favor, seleccione una de las opciones.")
