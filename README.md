@@ -83,5 +83,4 @@ For now the program is literally just a python script and i think i will be chan
 3. To run the script any python interpreter works and the easiest to install is the [official Python](https://www.python.org/downloads/)
 
 # 🎥 Installation Video
-[![Installation Video](https://www.youtube.com/watch?v=xvFZjo5PgG0&pp=ygUIcmlja3JvbGw%3D)](https://www.youtube.com/watch?v=xvFZjo5PgG0&pp=ygUIcmlja3JvbGw%3D)
-
+[![instalation video](https://img.youtube.com/vi/xvFZjo5PgG0&pp=ygUIcmlja3JvbGw%3D/0.jpg)](https://www.youtube.com/watch?v=xvFZjo5PgG0&pp=ygUIcmlja3JvbGw%3D)
