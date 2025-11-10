@@ -25,7 +25,7 @@
 3. [Getting started][getting_started]
 
 
-# Introduction<a name="introduction"></a>
+# 🔰Introduction<a name="introduction"></a>
 <p>
   Morph OS is a project that aims to create a program that "morphs" any type of file to any other type of file. 
   
