@@ -25,19 +25,18 @@
 3. [Getting started][getting_started]
 
 
-# 1. Introduction<a name="introduction"></a>
+# Introduction<a name="introduction"></a>
 <p>
   Morph OS is a project that aims to create a program that "morphs" any type of file to any other type of file. 
   
   Right now the project only has started so it only has a few types of conversions but i plan to increase those as time goes on, I'm a physics student so i do not have a lot of time on weekdays so i will be working on this on weekends.
 </p>
 
-# 2. Features<a name="features"></a>
+# Features<a name="features"></a>
 
 - Already implemented :
-  - Mass modification of files 
-  - PDF → PNG
-  - PNG → PDF
+  - Mass modification of file's names 
+  - PDF ↔ PNG
   - OGG → MP3
   - Explanation of every feature
 
@@ -73,6 +72,16 @@
     
     (Not sure if all of them are possible)
 
-# 3. Getting started <a name="getting_started"></a>
+# Getting started <a name="getting_started"></a>
+For now the program is literally just a python script and i think i will be changing that, so these may change a lot in a few months (today is 10/11/2025)
 
-For now there are two requirements to use the software
+### Requirements
+- Python interpreter (to run the script)
+- FFMPEG (audio converter)
+- POPPLER (dock converter)
+
+### Instalation 
+1. Add FFMPEG's and POPPLER's bin folders to the environment variable PATH (video on how to below)
+2. To run the script any python interpreter works and the easiest to install is the [official Python](https://www.python.org/downloads/)
+
+
