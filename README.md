@@ -79,6 +79,9 @@ For now the program is literally just a python script and i think i will be chan
 
 ### Instalation 
 1. Add FFMPEG's and POPPLER's bin folders to the environment variable PATH (video on how to below)
-2. To run the script any python interpreter works and the easiest to install is the [official Python](https://www.python.org/downloads/)
+2. Download this repo as a ZIP file from GitHub.
+3. To run the script any python interpreter works and the easiest to install is the [official Python](https://www.python.org/downloads/)
+
+# 🎥 Installation Video
 
 
