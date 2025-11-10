@@ -83,5 +83,5 @@ For now the program is literally just a python script and i think i will be chan
 3. To run the script any python interpreter works and the easiest to install is the [official Python](https://www.python.org/downloads/)
 
 # 🎥 Installation Video
-[![Installation Video](https://github.com/Manurodo/Morph-OS/blob/main/.assets/Video/Prueba.mp4)](https://github.com/Manurodo/Morph-OS/blob/main/.assets/Video/V%C3%ADdeo%20sin%20t%C3%ADtulo%20%E2%80%90%20Hecho%20con%20Clipchamp.mp4)
+[![Installation Video](https://www.youtube.com/watch?v=xvFZjo5PgG0&pp=ygUIcmlja3JvbGw%3D)](https://www.youtube.com/watch?v=xvFZjo5PgG0&pp=ygUIcmlja3JvbGw%3D)
 
