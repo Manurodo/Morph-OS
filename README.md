@@ -8,9 +8,9 @@
   Be able to MORPH any type of file into any other type of file.
   <a href= 
 <br> </br>
-  <a href="https://github.com/Manurodo/Morph-OS/blob/issues">Report Bug</a>
+  <a href="https://github.com/Manurodo/Morph-OS/issues">Report Bug</a>
   ·
-  <a href="https://github.com/Manurodo/Morph-OS/blob/issues">Request Feature</a>
+  <a href="https://github.com/Manurodo/Morph-OS/issues">Request Feature</a>
 </p>
 
 
