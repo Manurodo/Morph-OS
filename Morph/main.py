@@ -1,7 +1,7 @@
 import os
 import time
 from utilities.file_modifier import file_modifier
-from utilities.MP3_OGG import ogg_mp3
+from utilities.MP3_OGG import ogg_mp3, mp3_ogg
 from utilities.PDF_PNG import pdf_png, png_pdf
 
 # install poppler and ffmpeg and add to PATH
@@ -98,7 +98,7 @@ while True:
                
     elif opcion == "3":
         while True:
-            print("\nSeleccione modalidad:","","1.🎵 Carpeta OGG a MP3","","M.⬅️  Menú principal",sep="\n")
+            print("\nSeleccione modalidad:","","1.🎵 OGG → MP3","","2.🎵 MP3 → OGG","","M.⬅️  Menú principal",sep="\n")
             opcion_ogg_mp3 = input("\n|: ")
             if opcion_ogg_mp3 == "1":
                 while True:
@@ -118,6 +118,25 @@ while True:
                         print("❌ Directorio no válido. Intente nuevamente.")
                         carpeta_salida = carpeta_salida if carpeta_salida.strip() else None
                         ogg_mp3(carpeta_entrada, carpeta_salida)
+                break
+            if opcion_ogg_mp3 == "2":
+                while True:
+                    print(" ")
+                    print("Introduzca la ruta de la carpeta que contiene los archivos .mp3:")
+                    carpeta_entrada = input("|: ")
+                    if os.path.isdir(carpeta_entrada):
+                        break  # Ruta válida, salimos del bucle
+                    else:
+                        print("❌ Directorio no válido. Intente nuevamente.")
+                while True:
+                    print("Introduzca la ruta de la carpeta donde se guardarán los archivos .ogg (deje vacío para usar la misma carpeta):")
+                    carpeta_salida = input("|: ")
+                    if os.path.isdir(carpeta_salida) or carpeta_salida.strip() == "":
+                        break  # Ruta válida o vacía, salimos del bucle
+                    else:
+                        print("❌ Directorio no válido. Intente nuevamente.")
+                        carpeta_salida = carpeta_salida if carpeta_salida.strip() else None
+                        mp3_ogg(carpeta_entrada, carpeta_salida)
                 break
             elif opcion_ogg_mp3 == "m" or opcion_ogg_mp3 == "M":
                 print("Seleccione tipo de herramienta:")
