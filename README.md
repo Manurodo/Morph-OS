@@ -8,9 +8,9 @@
   Be able to MORPH any type of file into any other type of file.
   <a href= 
 <br> </br>
-  <a href="https://github.com/Manurodo/Morph-OS/blob/issues">Report Bug</a>
+  <a href="https://github.com/Manurodo/Morph-OS/issues">Report Bug</a>
   ·
-  <a href="https://github.com/Manurodo/Morph-OS/blob/issues">Request Feature</a>
+  <a href="https://github.com/Manurodo/Morph-OS/issues">Request Feature</a>
 </p>
 
 
@@ -81,7 +81,7 @@ For now the program is literally just a python script and i think i will be chan
 ### Instalation 
 1. Add FFMPEG's and POPPLER's bin folders to the environment variable PATH (video on how to below)
 2. Download this repo as a ZIP file from GitHub.
-3. To run the script any python interpreter works and the easiest to install is the [official Python](https://www.python.org/downloads/)
+3. Run the script with any python interpreter, i think the easiest to install is the [official Python](https://www.python.org/downloads/)
 
 # 🎥 Installation Video (test)
 [![instalation video](https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
