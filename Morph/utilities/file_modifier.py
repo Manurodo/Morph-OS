@@ -1,12 +1,6 @@
 import os
 import re
 
-print("introduzca directorio")
-directorio = input("|: ")
-print("introduzca Nuevo nombre")
-cadena = input("|: ")
-
-
 def file_modifier(directorio,cadena):
     # Recorre todos los archivos en el directorio
     for filename in os.listdir(directorio):
@@ -21,5 +15,3 @@ def file_modifier(directorio,cadena):
         nueva_ruta = os.path.join(directorio, nuevo_nombre_completo)
         os.rename(ruta_original, nueva_ruta)
         print(f"Archivo renombrado: {filename} -> {nuevo_nombre_completo}")
-
-file_modifier(directorio,cadena)

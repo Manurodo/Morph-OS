@@ -25,17 +25,3 @@ def png_pdf(carpeta_png, output_pdf):
     else:
         print("No se encontraron imágenes PNG en la carpeta.")
 
-print("introduzca directorio entrada PDF")
-directorio_entrada_PDF = input("|: ")
-print("introduzca directorio salida PNG")
-directorio_salida_PNG = input("|: ")
-# Convertir PDF a PNG
-pdf_png(directorio_entrada_PDF, directorio_salida_PNG)
-
-print("introduzca directorio entrada carpeta PNG")
-directorio_entrada_PNG = input("|: ")
-print("introduzca directorio salida PDF")
-directorio_salida_PDF = input("|: ")
-
-# Convertir carpeta de PNG a PDF
-png_pdf(directorio_entrada_PNG, directorio_salida_PDF)

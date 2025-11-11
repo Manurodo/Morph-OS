@@ -37,10 +37,3 @@ def ogg_mp3(carpeta_entrada, carpeta_salida=None, bitrate="192k"):
                 print(f"❌ Error al convertir {archivo}: {e}")
 
     print(f"\n🎵 Conversión completa: {convertidos} archivos convertidos en '{carpeta_salida}'")
-
-print("introduzca directorio entrada carpeta OGG")
-directorio_entrada_OGG = input("|: ")
-print("introduzca directorio salida carpeta MP3")
-directorio_salida_MP3 = input("|: ")
-
-ogg_mp3(directorio_entrada_OGG, directorio_salida_MP3)
