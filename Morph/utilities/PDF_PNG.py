@@ -4,7 +4,7 @@ from pdf2image import convert_from_path
 from PIL import Image
 import os
 
-def pdf_a_png(pdf_path, output_folder='./', dpi=300):
+def pdf_png(pdf_path, output_folder='./', dpi=300):
     pages = convert_from_path(pdf_path, dpi=dpi)
     for i, page in enumerate(pages):
         filename = os.path.join(output_folder, f"pagina_{i+1}.png")
@@ -12,7 +12,7 @@ def pdf_a_png(pdf_path, output_folder='./', dpi=300):
         print(f"Página {i+1} guardada como {filename}")
 
 
-def png_a_pdf(carpeta_png, output_pdf):
+def png_pdf(carpeta_png, output_pdf):
     # Lista de imágenes en la carpeta, ordenadas alfabéticamente
     png_files = [f for f in os.listdir(carpeta_png) if f.lower().endswith('.png')]
     png_files.sort()
@@ -30,7 +30,7 @@ directorio_entrada_PDF = input("|: ")
 print("introduzca directorio salida PNG")
 directorio_salida_PNG = input("|: ")
 # Convertir PDF a PNG
-pdf_a_png(directorio_entrada_PDF, directorio_salida_PNG)
+pdf_png(directorio_entrada_PDF, directorio_salida_PNG)
 
 print("introduzca directorio entrada carpeta PNG")
 directorio_entrada_PNG = input("|: ")
@@ -38,4 +38,4 @@ print("introduzca directorio salida PDF")
 directorio_salida_PDF = input("|: ")
 
 # Convertir carpeta de PNG a PDF
-png_a_pdf(directorio_entrada_PNG, directorio_salida_PDF)
+png_pdf(directorio_entrada_PNG, directorio_salida_PDF)

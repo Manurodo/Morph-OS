@@ -1,7 +1,7 @@
 import os
 from pydub import AudioSegment
 
-def carpeta_ogg_a_mp3(carpeta_entrada, carpeta_salida=None, bitrate="192k"):
+def ogg_mp3(carpeta_entrada, carpeta_salida=None, bitrate="192k"):
     """
     Convierte todos los archivos .ogg de una carpeta a .mp3.
 
@@ -43,4 +43,4 @@ directorio_entrada_OGG = input("|: ")
 print("introduzca directorio salida carpeta MP3")
 directorio_salida_MP3 = input("|: ")
 
-carpeta_ogg_a_mp3(directorio_entrada_OGG, directorio_salida_MP3)
+ogg_mp3(directorio_entrada_OGG, directorio_salida_MP3)

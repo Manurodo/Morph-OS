@@ -7,7 +7,7 @@ print("introduzca Nuevo nombre")
 cadena = input("|: ")
 
 
-def Modificar_nombre(directorio,cadena):
+def file_modifier(directorio,cadena):
     # Recorre todos los archivos en el directorio
     for filename in os.listdir(directorio):
         # Separar el nombre del archivo y la extensión
@@ -22,4 +22,4 @@ def Modificar_nombre(directorio,cadena):
         os.rename(ruta_original, nueva_ruta)
         print(f"Archivo renombrado: {filename} -> {nuevo_nombre_completo}")
 
-Modificar_nombre(directorio,cadena)
+file_modifier(directorio,cadena)
