@@ -1,4 +1,5 @@
 import os
+import time
 from utilities.file_modifier import file_modifier
 from utilities.MP3_OGG import ogg_mp3
 from utilities.PDF_PNG import pdf_png, png_pdf
@@ -137,6 +138,7 @@ while True:
 
     elif opcion == "s" or opcion == "S":
         print("\nSaliendo del programa. ¡Hasta luego!\n")
+        time.sleep(1)
         break
 
     else:
