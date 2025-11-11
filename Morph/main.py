@@ -8,12 +8,12 @@ from utilities.PDF_PNG import pdf_png, png_pdf
 
 print("\nSeleccione tipo de herramienta:")
 while True:
-    print("\n1.✏️  Modificar nombre archivos","","2.📄 Documentos","","3.🎵 Archivos musicales","","H.🛠️  Descripción distintas herramientas","","S.❌  Salir",sep="\n")
+    print("\n1.✏️  Modificar archivos","","2.📄 Documentos","","3.🎵 Archivos musicales","","H.🛠️  Descripción distintas herramientas","","S.❌  Salir",sep="\n")
     opcion = input("\n|: ")
     if opcion == "1":
         print("\nSeleccione modalidad:")
         while True:
-            print("\n1.✏️  Modificar nombre archivos","","M.⬅️  Menú principal",sep="\n")
+            print("\n1.✏️  Modificar archivos","","M.⬅️  Menú principal",sep="\n")
             opcion_modificar = input("\n|: ")
             if opcion_modificar == "1":
                 while True:
@@ -45,7 +45,7 @@ while True:
             
             if opcion_PDF_PNG == "1":
                 while True:
-                    print("Introduzca la ruta del archivo PDF:")
+                    print("\nIntroduzca la ruta del archivo PDF:")
                     archivo_pdf = input("|: ")
                     if os.path.exists(archivo_pdf):
                         break  # Ruta válida, salimos del bucle
@@ -53,7 +53,7 @@ while True:
                         print("❌ Archivo no encontrado. Intente nuevamente.")
                 
                 while True:
-                    print("Introduzca la ruta de la carpeta donde se guardarán las imágenes (deje vacío para usar ruta de archivo original):")
+                    print("\nIntroduzca la ruta de la carpeta donde se guardarán las imágenes (deje vacío para usar ruta de archivo original):")
                     carpeta_salida = input("|: ")
 
                     if os.path.isdir(carpeta_salida):
@@ -75,7 +75,7 @@ while True:
                         print("❌ Directorio no válido. Intente nuevamente.")
 
                 while True:
-                    print("Introduzca la ruta con el nombre del archivo PDF de salida (incluya .pdf):")
+                    print("\nIntroduzca la ruta con el nombre del archivo PDF de salida (incluya .pdf):")
                     archivo_salida = input("|: ")
                     carpeta = os.path.dirname(archivo_salida) or "."  # "." si no hay carpeta explícita
                     nombre = os.path.basename(archivo_salida)
@@ -103,14 +103,14 @@ while True:
             if opcion_ogg_mp3 == "1":
                 while True:
                     print(" ")
-                    print("Introduzca la ruta de la carpeta que contiene los archivos .ogg:")
+                    print("\nIntroduzca la ruta de la carpeta que contiene los archivos .ogg:")
                     carpeta_entrada = input("|: ")
                     if os.path.isdir(carpeta_entrada):
                         break  # Ruta válida, salimos del bucle
                     else:
                         print("❌ Directorio no válido. Intente nuevamente.")
                 while True:
-                    print("Introduzca la ruta de la carpeta donde se guardarán los archivos .mp3 (deje vacío para usar la misma carpeta):")
+                    print("\nIntroduzca la ruta de la carpeta donde se guardarán los archivos .mp3 (deje vacío para usar la misma carpeta):")
                     carpeta_salida = input("|: ")
                     if os.path.isdir(carpeta_salida) or carpeta_salida.strip() == "":
                         break  # Ruta válida o vacía, salimos del bucle
@@ -121,15 +121,14 @@ while True:
                 break
             if opcion_ogg_mp3 == "2":
                 while True:
-                    print(" ")
-                    print("Introduzca la ruta de la carpeta que contiene los archivos .mp3:")
+                    print("\nIntroduzca la ruta de la carpeta que contiene los archivos .mp3:")
                     carpeta_entrada = input("|: ")
                     if os.path.isdir(carpeta_entrada):
                         break  # Ruta válida, salimos del bucle
                     else:
                         print("❌ Directorio no válido. Intente nuevamente.")
                 while True:
-                    print("Introduzca la ruta de la carpeta donde se guardarán los archivos .ogg (deje vacío para usar la misma carpeta):")
+                    print("\nIntroduzca la ruta de la carpeta donde se guardarán los archivos .ogg (deje vacío para usar la misma carpeta):")
                     carpeta_salida = input("|: ")
                     if os.path.isdir(carpeta_salida) or carpeta_salida.strip() == "":
                         break  # Ruta válida o vacía, salimos del bucle
@@ -139,19 +138,17 @@ while True:
                         mp3_ogg(carpeta_entrada, carpeta_salida)
                 break
             elif opcion_ogg_mp3 == "m" or opcion_ogg_mp3 == "M":
-                print("Seleccione tipo de herramienta:")
+                print("\nSeleccione tipo de herramienta:")
                 break
             else:
                 print("\n❌ Opción no válida, por favor, seleccione una de las modalidades.")
         
             
     elif opcion == "h" or opcion == "H":
-        print(" ")
-        print("Descripción de las herramientas:")
-        print(" ")
-        print("1.✏️  Modificar nombre archivos: Permite cambiar el nombre de los archivos en un directorio manteniendo los numeros de este.")
-        print("2.📄 PDF a PNG: Convierte un archivo PDF en imágenes PNG.")
-        print("3.🎵 OGG a MP3: Convierte archivos de audio OGG a MP3.")
+        print("\nDescripción de las herramientas:")
+        print("\n1.✏️  Modificar archivos: Permite cambiar el nombre de los archivos en un directorio manteniendo los numeros de este.")
+        print("2.📄 PDF a PNG: Convierte un archivo PDF en imágenes PNG y viceversa.")
+        print("3.🎵 OGG a MP3: Convierte archivos de audio OGG a MP3 y viceversa.")
         input("\n⬅️  Presione Enter para volver al menú principal...")
         print("\nSeleccione tipo de herramienta:")
 
