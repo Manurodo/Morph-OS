@@ -35,7 +35,7 @@
 
 # 🌟 Features<a name="features"></a>
 
-- Already implemented :
+- Already implemented (v. a.0.2):
   - Mass modification of file's names 
   - PDF ↔ PNG
   - OGG ↔ MP3
