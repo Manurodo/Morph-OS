@@ -4,7 +4,7 @@ from pydub import AudioSegment
 
 
 class conv_ogg_mp3:
-    nombre = "OGG → MP3"
+    nombre = "MP3 ← OOG"
     
     def __init__(self, dir_in=None, dir_out=None, bitrate="192k"):
         self.dir_in = dir_in

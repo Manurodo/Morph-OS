@@ -4,7 +4,7 @@ from PIL import Image
 import os
 
 class conv_png_pdf:
-    nombre = "PNG → PDF"
+    nombre = "PDF ← PNG"
     
     def __init__(self, dir_png=None, dir_out=None):
         self.dir_png = dir_png
