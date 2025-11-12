@@ -24,6 +24,7 @@
 1. [Introduction][intro]
 2. [Features][features]
 3. [Getting started][getting_started]
+4. [Installation Video][instaltion_video]
 
 
 # 🔰Introduction<a name="introduction"></a>
