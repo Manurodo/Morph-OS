@@ -28,7 +28,7 @@
 
 # 🔰Introduction<a name="introduction"></a>
 <p>
-  Morph OS is a project that aims to create a program that "morphs" any type of file to any other type of file. 
+  Morph is a project that aims to create a program that "morphs" any type of file to any other type of file. 
   
   The project is just starting, so it only has a few types of conversions, but I plan to add more over time. I'm a physics student, so I don't have much time during the week and will be working on this on weekends.
 </p>
