@@ -38,12 +38,13 @@
 - Already implemented :
   - Mass modification of file's names 
   - PDF ↔ PNG
-  - OGG → MP3
-  - Explanation of every feature
+  - OGG ↔ MP3
+  - Explanation of every feature (in v. a0.1)
+  - GUI (in process for v. a0.2)
 
 - Plan to implement:
   - Music (lossy)
-    - MP3 → OOG , WMA , AAC (m4a/apple)
+    - MP3 → WMA , AAC (m4a/apple)
     - WMA , AAC → MP3 
   - Music (lossless)
     - FLAC ↔ AIFF , WAV , ALAC (m4a/apple)
