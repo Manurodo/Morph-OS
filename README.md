@@ -2,7 +2,7 @@
   <img src="https://github.com/Manurodo/Morph-OS/blob/main/Morph/Logo.png" alt="Logo" width="200" height="200">
 </p>
 
-<h1 align="center"> Welcome to Morph OS </h1>
+<h1 align="center"> Welcome to Morph </h1>
 
 <p align="center">
   Be able to MORPH any type of file into any other type of file.
