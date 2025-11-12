@@ -19,12 +19,12 @@
 [intro]: <#introduction> "Introduction"
 [features]: <#features> "Features"
 [getting_started]: <#getting_started> "Getting started"
-[installation_video]: <#installation_video> "Installation Video (test)"
+[installation_video]: <#installation_video> "Installation Video"
 
 1. [Introduction][intro]
 2. [Features][features]
 3. [Getting started][getting_started]
-4. [Installation Video (test)][installation_video]
+4. [Installation Video][installation_video]
 
 
 # 🔰Introduction<a name="introduction"></a>
@@ -80,11 +80,11 @@ For now the program is literally just a python script and i think i will be chan
 - [FFMPEG](https://www.ffmpeg.org/download.html) (audio converter)
 - [POPPLER](https://poppler.freedesktop.org/) (dock converter)
 
-### Instalation 
+### Installation 
 1. Add FFMPEG's and POPPLER's bin folders to the environment variable PATH (video on how to below)
 2. Download this repo as a ZIP file from GitHub.
 3. Run the script with any python interpreter, i think the easiest to install is the [official Python](https://www.python.org/downloads/)
 
-# 🎥 Installation Video (test)
+# 🎥 Installation Video
 [![instalation video](https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 

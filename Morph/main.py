@@ -1,3 +1,4 @@
+import os
 import importlib
 import pkgutil
 import tkinter as tk
@@ -60,7 +61,10 @@ def main():
     root.title("Morph")
     root.geometry("800x400")
 
-    img = Image.open(r"C:\Mio\Git\Pyxego\Morph Test\Gui test\logo.png")  # JPG, PNG, etc.
+    # Obtener la ruta del directorio actual del script
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    logo_path = os.path.join(script_dir, "logo.png")
+    img = Image.open(logo_path)
     img = img.resize((100, 100))  # Redimensionar si quieres
     logo = ImageTk.PhotoImage(img)
     logo_label = tk.Label(root, image=logo)
