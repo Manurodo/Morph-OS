@@ -5,7 +5,7 @@
 <h1 align="center"> Welcome to Morph </h1>
 
 <p align="center">
-  Be able to MORPH any type of file into any other type of file.
+  MORPH any type of file.
   <a href= 
 <br> </br>
   <a href="https://github.com/Manurodo/Morph-OS/issues">Report Bug</a>
