@@ -39,8 +39,8 @@
   - Mass modification of file's names 
   - PDF ↔ PNG
   - OGG ↔ MP3
-  - Explanation of every feature (in v. a0.1)
-  - GUI (in v. a0.2)
+  - Explanation of every feature (help)
+  - GUI 
 
 - Plan to implement:
   - Music (lossy)
