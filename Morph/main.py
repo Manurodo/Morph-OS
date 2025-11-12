@@ -1,161 +1,82 @@
-import os
-import time
-from utilities.file_modifier import file_modifier
-from utilities.MP3_OGG import ogg_mp3, mp3_ogg
-from utilities.PDF_PNG import pdf_png, png_pdf
+import importlib
+import pkgutil
+import tkinter as tk
+from tkinter import ttk
+import sys
+from PIL import Image, ImageTk
+import conv_
 
-# install poppler and ffmpeg and add to PATH
+def cargar_conversores():
+    modulos = []
+    if not hasattr(conv_, "__path__"):
+        print("conversores no es un paquete: añade conversores/__init__.py")
+        return modulos
 
-print("\nSeleccione tipo de herramienta:")
-while True:
-    print("\n1.✏️  Modificar archivos","","2.📄 Documentos","","3.🎵 Archivos musicales","","H.🛠️  Descripción distintas herramientas","","S.❌  Salir",sep="\n")
-    opcion = input("\n|: ")
-    if opcion == "1":
-        print("\nSeleccione modalidad:")
-        while True:
-            print("\n1.✏️  Modificar archivos","","M.⬅️  Menú principal",sep="\n")
-            opcion_modificar = input("\n|: ")
-            if opcion_modificar == "1":
-                while True:
-                    print("\nIntroduzca directorio")
-                    directorio = input("|: ")
-                    if os.path.isdir(directorio):
-                        break  # Ruta válida, salimos del bucle
-                    else:
-                        print("Directorio no válido. Intente nuevamente.")
-        
-                while True:
-                    print("\nIntroduzca cadena")
-                    cadena = input("|: ")
-                    if all(c.isalnum() or c.isspace() for c in cadena):
-                        break
-                    else:
-                        print("❌ No se permiten caracteres especiales. Intente nuevamente.")
-                file_modifier(directorio,cadena)
-                break
-            elif opcion_modificar == "m" or opcion_modificar == "M":
-                print("\nSeleccione tipo de herramienta:")
-                break
+    importlib.invalidate_caches()
+    print("DEBUG: sys.path =", sys.path)
+    print("DEBUG: conv_.__path__ =", list(conv_.__path__))
 
-    elif opcion == "2":
-        print("\nSeleccione modalidad:")
-        while True:
-            print("\n1.📄 PDF a PNG","","2.🖼️  PNG a PDF","","M.⬅️  Menú principal",sep="\n")
-            opcion_PDF_PNG = input("\n|: ")
-            
-            if opcion_PDF_PNG == "1":
-                while True:
-                    print("\nIntroduzca la ruta del archivo PDF:")
-                    archivo_pdf = input("|: ")
-                    if os.path.exists(archivo_pdf):
-                        break  # Ruta válida, salimos del bucle
-                    else:
-                        print("❌ Archivo no encontrado. Intente nuevamente.")
-                
-                while True:
-                    print("\nIntroduzca la ruta de la carpeta donde se guardarán las imágenes (deje vacío para usar ruta de archivo original):")
-                    carpeta_salida = input("|: ")
+    for finder, nombre, ispkg in pkgutil.iter_modules(conv_.__path__):
+        print("Encontrado módulo:", nombre, "ispkg=", ispkg)
+        try:
+            modulo = importlib.import_module(f"{conv_.__name__}.{nombre}")
+        except Exception as e:
+            print(f"  Error importando conversores.{nombre}: {e}")
+            continue
 
-                    if os.path.isdir(carpeta_salida):
-                        break  # Ruta válida o vacía, continuamos
-                    else:
-                        print("❌ Directorio no válido. Intente nuevamente.")
+        print(f"  Atributos en {nombre}: {dir(modulo)}")
+        for attr in dir(modulo):
+            if attr.startswith("__"):
+                continue
+            obj = getattr(modulo, attr)
+            print(f"    {attr}: {type(obj)}")  # depuración tipo
 
-                carpeta_salida = carpeta_salida if carpeta_salida.strip() else "imagenes_pdf"
-                pdf_png(archivo_pdf, carpeta_salida)
+            # clases nombradas Conversor*
+            if isinstance(obj, type) and attr.startswith("Conversor"):
+                print("  Clase encontrada:", attr)
+                try:
+                    modulos.append(obj())
+                except Exception as e:
+                    print("    Error instanciando:", e)
+            # clases que exponen la interfaz pero no siguen la convención de nombre
+            elif isinstance(obj, type) and hasattr(obj, "get_frame") and hasattr(obj, "nombre"):
+                print("  Clase que implementa interfaz encontrada (instanciando):", attr)
+                try:
+                    modulos.append(obj())
+                except Exception as e:
+                    print("    Error instanciando:", e)
+            # objetos ya instanciados que exponen la interfaz
+            elif hasattr(obj, "get_frame") and hasattr(obj, "nombre"):
+                print("  Objeto conversor encontrado (instancia):", attr)
+                try:
+                    modulos.append(obj)
+                except Exception as e:
+                    print("    Error añadiendo objeto:", e)
+    return modulos
 
-            elif opcion_PDF_PNG == "2":
-                while True:
-                    print("\nIntroduzca la ruta de la carpeta que contiene las imágenes PNG:")
-                    carpeta_png = input("|: ")
 
-                    if os.path.isdir(carpeta_png):
-                        break  # Ruta válida, salimos del bucle
-                    else:
-                        print("❌ Directorio no válido. Intente nuevamente.")
+def main():
+    root = tk.Tk()
+    root.title("Morph")
+    root.geometry("800x400")
 
-                while True:
-                    print("\nIntroduzca la ruta con el nombre del archivo PDF de salida (incluya .pdf):")
-                    archivo_salida = input("|: ")
-                    carpeta = os.path.dirname(archivo_salida) or "."  # "." si no hay carpeta explícita
-                    nombre = os.path.basename(archivo_salida)
+    img = Image.open(r"C:\Mio\Git\Pyxego\Morph Test\Gui test\logo.png")  # JPG, PNG, etc.
+    img = img.resize((100, 100))  # Redimensionar si quieres
+    logo = ImageTk.PhotoImage(img)
+    logo_label = tk.Label(root, image=logo)
+    logo_label.pack(pady=10)
+    root.iconphoto(True, logo)  # logo debe ser PhotoImage
 
-                    if not os.path.isdir(carpeta):
-                        print("❌ Carpeta no válida. Intente nuevamente.")
-                    elif not nombre.lower().endswith(".pdf"):
-                        print("❌ Archivo no válido. Intente nuevamente.")
-                    else:
-                        break  # Ruta válida, salimos del bucle
 
-                png_pdf(carpeta_png, archivo_salida)
+    notebook = ttk.Notebook(root)
+    notebook.pack(fill="both", expand=True)
 
-            elif opcion_PDF_PNG == "m" or opcion_PDF_PNG == "M":
-                print("\nSeleccione tipo de herramienta:")
-                break
+    conversores_instancias = cargar_conversores()
+    for conversor in conversores_instancias:
+        frame = conversor.get_frame(notebook)
+        notebook.add(frame, text=conversor.nombre)
 
-            else:
-                print("\n❌ Opción no válida, por favor, seleccione una de las modalidades.")
-               
-    elif opcion == "3":
-        while True:
-            print("\nSeleccione modalidad:","","1.🎵 OGG → MP3","","2.🎵 MP3 → OGG","","M.⬅️  Menú principal",sep="\n")
-            opcion_ogg_mp3 = input("\n|: ")
-            if opcion_ogg_mp3 == "1":
-                while True:
-                    print(" ")
-                    print("\nIntroduzca la ruta de la carpeta que contiene los archivos .ogg:")
-                    carpeta_entrada = input("|: ")
-                    if os.path.isdir(carpeta_entrada):
-                        break  # Ruta válida, salimos del bucle
-                    else:
-                        print("❌ Directorio no válido. Intente nuevamente.")
-                while True:
-                    print("\nIntroduzca la ruta de la carpeta donde se guardarán los archivos .mp3 (deje vacío para usar la misma carpeta):")
-                    carpeta_salida = input("|: ")
-                    if os.path.isdir(carpeta_salida) or carpeta_salida.strip() == "":
-                        break  # Ruta válida o vacía, salimos del bucle
-                    else:
-                        print("❌ Directorio no válido. Intente nuevamente.")
-                        carpeta_salida = carpeta_salida if carpeta_salida.strip() else None
-                        ogg_mp3(carpeta_entrada, carpeta_salida)
-                break
-            if opcion_ogg_mp3 == "2":
-                while True:
-                    print("\nIntroduzca la ruta de la carpeta que contiene los archivos .mp3:")
-                    carpeta_entrada = input("|: ")
-                    if os.path.isdir(carpeta_entrada):
-                        break  # Ruta válida, salimos del bucle
-                    else:
-                        print("❌ Directorio no válido. Intente nuevamente.")
-                while True:
-                    print("\nIntroduzca la ruta de la carpeta donde se guardarán los archivos .ogg (deje vacío para usar la misma carpeta):")
-                    carpeta_salida = input("|: ")
-                    if os.path.isdir(carpeta_salida) or carpeta_salida.strip() == "":
-                        break  # Ruta válida o vacía, salimos del bucle
-                    else:
-                        print("❌ Directorio no válido. Intente nuevamente.")
-                        carpeta_salida = carpeta_salida if carpeta_salida.strip() else None
-                        mp3_ogg(carpeta_entrada, carpeta_salida)
-                break
-            elif opcion_ogg_mp3 == "m" or opcion_ogg_mp3 == "M":
-                print("\nSeleccione tipo de herramienta:")
-                break
-            else:
-                print("\n❌ Opción no válida, por favor, seleccione una de las modalidades.")
-        
-            
-    elif opcion == "h" or opcion == "H":
-        print("\nDescripción de las herramientas:")
-        print("\n1.✏️  Modificar archivos: Permite cambiar el nombre de los archivos en un directorio manteniendo los numeros de este.")
-        print("2.📄 PDF a PNG: Convierte un archivo PDF en imágenes PNG y viceversa.")
-        print("3.🎵 OGG a MP3: Convierte archivos de audio OGG a MP3 y viceversa.")
-        input("\n⬅️  Presione Enter para volver al menú principal...")
-        print("\nSeleccione tipo de herramienta:")
+    root.mainloop()
 
-    elif opcion == "s" or opcion == "S":
-        print("\nSaliendo del programa. ¡Hasta luego!\n")
-        time.sleep(1)
-        break
-
-    else:
-        print("\n❌Opción no válida. Por favor, seleccione una de las opciones.")
+if __name__ == "__main__":
+    main()
