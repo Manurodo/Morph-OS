@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/Manurodo/Morph-OS/blob/main/Body/Logo.png" alt="Logo" width="200" height="200">
+  <img src="https://github.com/Manurodo/Morph-OS/blob/main/Morph/Logo.png" alt="Logo" width="200" height="200">
 </p>
 
 <h1 align="center"> Welcome to Morph OS </h1>
