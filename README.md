@@ -19,12 +19,12 @@
 [intro]: <#introduction> "Introduction"
 [features]: <#features> "Features"
 [getting_started]: <#getting_started> "Getting started"
-[instaltion_video]: <#instaltion_video> "Installation Video (test)"
+[installation_video]: <#installation_video> "Installation Video (test)"
 
 1. [Introduction][intro]
 2. [Features][features]
 3. [Getting started][getting_started]
-4. [Installation Video (test)][instaltion_video]
+4. [Installation Video (test)][installation_video]
 
 
 # 🔰Introduction<a name="introduction"></a>
