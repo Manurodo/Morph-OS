@@ -19,7 +19,7 @@
 [intro]: <#introduction> "Introduction"
 [features]: <#features> "Features"
 [getting_started]: <#getting_started> "Getting started"
-[instaltion_video]: 
+[instaltion_video]: <#instaltion_video> "Installation Video"
 
 1. [Introduction][intro]
 2. [Features][features]
