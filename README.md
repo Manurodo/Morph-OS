@@ -40,7 +40,7 @@
   - PDF ↔ PNG
   - OGG ↔ MP3
   - Explanation of every feature (in v. a0.1)
-  - GUI (in process for v. a0.2)
+  - GUI (in v. a0.2)
 
 - Plan to implement:
   - Music (lossy)
