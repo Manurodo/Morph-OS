@@ -65,7 +65,7 @@ def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     logo_path = os.path.join(script_dir, "logo.png")
     img = Image.open(logo_path)
-    img = img.resize((100, 100))  # Redimensionar si quieres
+    img = img.resize((100, 100))
     logo = ImageTk.PhotoImage(img)
     logo_label = tk.Label(root, image=logo)
     logo_label.pack(pady=10)
