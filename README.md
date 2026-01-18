@@ -44,6 +44,7 @@
   - GUI 
 
 - Plan to implement:
+  - Update GUI
   - Music (lossy)
     - MP3 → WMA , AAC (m4a/apple)
     - WMA , AAC → MP3 
