@@ -74,7 +74,7 @@
 
 
 # 🚀 Getting started <a name="getting_started"></a>
-For now the program is literally just a python script and i think i will be changing that, so these may change a lot in a few months (today is 10/11/2025)
+For now the program is literally just a python script and i think i will be changing that, although im in the middle of my physics year so maybe i will continue on 
 
 ### Requirements
 - Python interpreter (to run the script)
