@@ -1,5 +1,6 @@
 import os
-from tkinter import ttk
+from tkinter import filedialog, ttk
+from anyio import Path
 from pydub import AudioSegment
 class conv_mp3_ogg:
     nombre = "MP3 → OGG"
@@ -12,27 +13,77 @@ class conv_mp3_ogg:
     def get_frame(self, parent):
         frame = ttk.Frame(parent)
 
-        ttk.Label(frame, text="Directorio entrada:").grid(row=0, column=0, sticky="w", padx=5, pady=3)
-        self.entry_dir = ttk.Entry(frame, width=40)
-        self.entry_dir.grid(row=0, column=1, padx=5, pady=3)
-        if self.dir_in:
-            self.entry_dir.insert(0, self.dir_in)
+        # Boton para seleccionar carpeta entrada
+        boton_carpeta_in = ttk.Button(
+            frame,
+            text="Seleccionar Carpeta Entrada",
+            command=self.select_directory_in
+        )
+        boton_carpeta_in.grid(row=0, column=0, columnspan=2, pady=5)
 
-        ttk.Label(frame, text="Directorio salida:").grid(row=1, column=0, sticky="w", padx=5, pady=3)
-        self.entry_dir_out = ttk.Entry(frame, width=40)
-        self.entry_dir_out.grid(row=1, column=1, padx=5, pady=3)
-        if self.dir_out:
-            self.entry_dir_out.insert(0, self.dir_out)
+        #Boton para seleccionar carpeta salida
+        boton_carpeta_out = ttk.Button(
+                    frame,
+                    text="Seleccionar Carpeta Salida",
+                    command=self.select_directory_out
+                )
+        boton_carpeta_out.grid(row=1, column=0, columnspan=2, pady=5)
 
-
-        boton = ttk.Button(frame, text="Convertir", command=self.convertir)
+        #Boton convertir
+        boton = ttk.Button(
+            frame, 
+            text="Convertir", 
+            command=self.convertir
+        )
         boton.grid(row=2, column=0, columnspan=2, pady=5)
 
+        # Resultado
         self.label_result = ttk.Label(frame, text="")
-        self.label_result.grid(row=3, column=0, columnspan=2, padx=5, pady=5)
-
+        self.label_result.grid(
+            row=3,
+            column=0,
+            columnspan=2,
+            padx=5,
+            pady=5
+        )
         return frame
+
+    def select_directory_in(self):
+        ruta_carpeta = filedialog.askdirectory(
+            title="Selecciona una carpeta"
+        )
+
+        if ruta_carpeta:
+            self.dir_in = Path(ruta_carpeta)
+
+            print("Ruta seleccionada:")
+            print(self.dir_in)
+
+            self.label_result.config(
+                text=f"Carpeta: {self.dir_in}"
+            )
+
+        else:
+            print("No se seleccionó ninguna carpeta.")
     
+    def select_directory_out(self):
+        ruta_carpeta = filedialog.askdirectory(
+            title="Selecciona una carpeta"
+        )
+
+        if ruta_carpeta:
+            self.dir_out = Path(ruta_carpeta)
+
+            print("Ruta seleccionada:")
+            print(self.dir_out)
+
+            self.label_result.config(
+                text=f"Carpeta: {self.dir_out}"
+            )
+
+        else:
+            print("No se seleccionó ninguna carpeta.")
+
     def convertir(self):
         dir_in = self.entry_dir.get().strip() or "."
         dir_out = self.entry_dir_out.get().strip() or None
