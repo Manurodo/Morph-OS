@@ -12,12 +12,14 @@ conv_hiddenimports = collect_submodules("conv_")
 tkinter_hiddenimports = collect_submodules("tkinter")
 pdf2image_hiddenimports = collect_submodules("pdf2image")
 pillow_hiddenimports = collect_submodules("PIL")
+pydub_hiddenimports = collect_submodules("pydub")
 
 hiddenimports = (
     conv_hiddenimports
     + tkinter_hiddenimports
     + pdf2image_hiddenimports
     + pillow_hiddenimports
+    + pydub_hiddenimports
 )
 
 
@@ -43,14 +45,13 @@ a = Analysis(
         #
         ("conv_", "conv_"),
 
-        # ----------------------------------------------------
-        # POPPLER
-        # ----------------------------------------------------
+        # Dependencias externas
+
         ("bin/poppler", "bin/poppler"),
 
-        # ----------------------------------------------------
-        # LOGO
-        # ----------------------------------------------------
+        ("bin/ffmpeg", "bin/ffmpeg"),
+
+        # Logo
         ("logo.png", "."),
     ],
 
