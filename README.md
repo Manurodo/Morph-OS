@@ -2,10 +2,10 @@
   <img src="https://github.com/Manurodo/Morph-OS/blob/main/Morph/Logo.png" alt="Logo" width="200" height="200">
 </p>
 
-<h1 align="center"> Welcome to Morph </h1>
+<h1 align="center"> Welcome to Morph tools </h1>
 
 <p align="center">
-  MORPH any type of file.
+  A project that gathers all the tools i develop while in the university
   <a href= 
 <br> </br>
   <a href="https://github.com/Manurodo/Morph-OS/issues">Report Bug</a>
@@ -36,7 +36,7 @@
 
 # 🌟 Features<a name="features"></a>
 
-- Already implemented (v0.2.0-alpha):
+- Already implemented (v1.0.0-alpha):
   - Mass modification of file's names 
   - PDF ↔ PNG
   - OGG ↔ MP3
@@ -74,17 +74,13 @@
 
 
 # 🚀 Getting started <a name="getting_started"></a>
-For now the program is literally just a python script and i think i will be changing that, although im in the middle of my physics year so maybe i will continue on summer vacation
+Right now thw program is compillable by pyinstall (compiled version is 1,5 gb before optimizacion)  
 
 ### Requirements
-- Python interpreter (to run the script)
-- [FFMPEG](https://www.ffmpeg.org/download.html) (audio converter)
-- [POPPLER](https://poppler.freedesktop.org/) (dock converter)
+- Computer console (Preferably bash to install and run pyinstaller)
 
 ### Installation 
-1. Add FFMPEG's and POPPLER's bin folders to the environment variable PATH (video on how to below)
-2. Download this repo as a ZIP file from GitHub.
-3. Run the script with any python interpreter, i think the easiest to install is the [official Python](https://www.python.org/downloads/)
+1. Run in a console the command pyinstaller --noconsole main.py
 
 # 🎥 Installation Video
 [![instalation video](https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
